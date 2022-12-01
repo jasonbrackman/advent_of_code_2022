@@ -14,3 +14,4 @@ def time_it(command: FunctionType) -> None:
 def time_it_all(args: List) -> None:
     for arg in args:
         time_it(arg)
+

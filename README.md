@@ -1,2 +1,10 @@
-# advent_of_code_2022
-Getting project ready for new AOC 2022
+# Advent Of Code 2022
+
+MacBook Pro 
+- Apple M1 Max
+- Memory 32GB 
+- OS Montery 12.6.1
+- Python 3.11
+
+
+[aoc_2022.d01.run]: Completed in 0.5 ms
