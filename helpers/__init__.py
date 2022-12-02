@@ -1,4 +1,4 @@
-__all__ = ["Node", "Point", "ints", "lines", "time_it_all"]
+__all__ = ["Node", "Pos", "ints", "lines", "time_it_all"]
 
 from .node import Node
 from .parse import ints, lines
