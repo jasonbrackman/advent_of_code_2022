@@ -10,7 +10,9 @@ MacBook Pro
 [aoc_2022.d01.run]: Completed in 0.5 ms \
 [aoc_2022.d02.run]: Completed in 0.8 ms
 
-.     Part 1                   Part 2                 \
-Day       Time   Rank  Score       Time   Rank  Score \
-  2   00:33:41  12325      0   00:45:31  11836      0 \
-  1   00:03:25   1439      0   00:05:30   1571      0 \
+```
+      Part 1                   Part 2                 
+Day       Time   Rank  Score       Time   Rank  Score 
+  2   00:33:41  12325      0   00:45:31  11836      0 
+  1   00:03:25   1439      0   00:05:30   1571      0 
+```
