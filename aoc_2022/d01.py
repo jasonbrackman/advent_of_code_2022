@@ -1,10 +1,11 @@
+from pathlib import Path
 import helpers
 
-def run():
-    totals = []
 
+def run() -> None:
+    totals = []
     count = 0
-    for line in helpers.lines(r'./data/day_01.txt'):
+    for line in helpers.lines(Path("./data/day_01.txt")):
         if line == "":
             totals.append(count)
             count = 0
