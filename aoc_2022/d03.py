@@ -8,8 +8,8 @@ import helpers
 def part01(lines: List[str]) -> int:
     total = 0
     for line in lines:
-        div = len(line) // 2
-        result = set(line[:div]).intersection(set(line[div:])).pop()
+        half_length = len(line) // 2
+        result = max(set(line[:half_length]).intersection(set(line[half_length:])))
         total += ascii_letters.index(result) + 1
     return total
 
