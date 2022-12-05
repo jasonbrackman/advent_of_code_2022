@@ -5,7 +5,7 @@ import helpers
 
 
 def run() -> None:
-    lines = helpers.lines(Path("./data/day_04.txt"))
+    lines = helpers.lines(Path(__file__).parent / 'data' / 'day_04.txt')
     p1 = 0
     p2 = 0
     for line in lines:

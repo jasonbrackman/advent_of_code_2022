@@ -25,7 +25,7 @@ def part02(plays: List[List[str]]) -> int:
 
 
 def run() -> None:
-    lines = helpers.lines(Path("./data/day_02.txt"))
+    lines = helpers.lines(Path(__file__).parent / 'data' / 'day_02.txt')
     plays = [line.split() for line in lines]
 
     assert part01(plays) == 11666
