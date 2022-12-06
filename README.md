@@ -7,16 +7,18 @@ MacBook Pro
 - Python 3.11
 
 
-[aoc_2022.d01.run]: Completed in 0.4 ms \
-[aoc_2022.d02.run]: Completed in 0.9 ms \
-[aoc_2022.d03.run]: Completed in 0.8 ms \
-[aoc_2022.d04.run]: Completed in 3.5 ms \
-[aoc_2022.d05.run]: Completed in 1.5 ms
+[aoc_2022.d01.run]: 0.4 ms \
+[aoc_2022.d02.run]: 0.9 ms \
+[aoc_2022.d03.run]: 0.8 ms \
+[aoc_2022.d04.run]: 3.5 ms \
+[aoc_2022.d05.run]: 1.5 ms \
+[aoc_2022.d06.run]: 1.4 ms
 
 ```             
       --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
-  5   00:31:32   5865      0   00:34:10   5115      0
+  6   00:10:00   6172      0   00:11:06   5252      0  
+  5   00:31:32   5865      0   00:34:10   5115      0  
   4   00:11:13   5332      0   00:11:58   3377      0
   3   00:09:37   2593      0   00:19:54   3744      0
   2   00:33:41  12325      0   00:45:31  11836      0
