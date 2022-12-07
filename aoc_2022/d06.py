@@ -5,9 +5,13 @@ import helpers
 
 
 def part(line: str, window: int) -> Optional[int]:
+    if len(line) < window:
+        return None
+
     for index in range(len(line)):
         if len(set(line[index : index + window])) == window:
             return index + window
+
     return None
 
 
