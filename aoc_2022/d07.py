@@ -1,8 +1,63 @@
+from __future__ import annotations
+from dataclasses import dataclass
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union, Optional
 
 import helpers
+
+
+@dataclass
+class File:
+    name: str
+    size: str
+
+
+@dataclass
+class Directory:
+    name: str
+    parent: Optional[Directory]
+    files: Dict[str, Union[File, Directory]]
+    size: int
+
+
+def file_system_parse() -> Directory:
+
+    root = Directory("", None, {}, 0)
+    cwd: Optional[Directory] = root
+    lines = helpers.lines(Path(__file__).parent / "data" / "day_07.txt")
+    for line in lines:
+        cmds = line.split()
+        if cmds[0] == "$":
+            if cmds[1] == "cd":
+                if cmds[2] == "..":
+                    cwd = cwd.parent
+                else:
+                    print(cmds[2])
+                    if cmds[2] not in cwd.files:
+                        new_dir = Directory(cmds[2], cwd, {}, 0)
+                        cwd.files[cmds[2]] = new_dir
+                        cwd = new_dir
+                    else:
+                        cwd = cwd.files[cmds[2]]
+
+        else:
+            if cmds[0] == "dir":
+                if cmds[0] not in cwd.files:
+                    new_dir = Directory(cmds[2], cwd, {}, 0)
+                    cwd.files[cmds[0]] = new_dir
+
+            else:
+                new_file = File(cmds[1], cmds[0])
+                if cmds[1] not in cwd.files:
+                    cwd.files[cmds[1]] = new_file
+        return root
+
+
+r = file_system_parse()
+while r is not None:
+    print(r.name)
+    r = r.parent
 
 
 def parse_data() -> Dict[str, Tuple[int, List[str]]]:
