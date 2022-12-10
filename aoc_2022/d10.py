@@ -1,75 +1,75 @@
 from pathlib import Path
-from itertools import count
-from typing import List, Tuple
-
+from typing import List, Dict
 import helpers
 
 
 class CPU:
+    CRT_WIDTH = 40
+    CRT_ROWS = 6
+
     def __init__(self) -> None:
-        self.x = 1  # register
-        self.stack: List[Tuple[str, ...]] = []
-        self.cycles = count(1)
+        # Registers
+        self.r: Dict[str, int] = {
+            "x": 1,  # default value starts at 1
+        }
+
+        self.clock = 0
+        self.stack: List[List[str]] = []
 
         # For part02
-        self.sum: List[int] = []
+        self.sum = 0
 
         # For part01
         self.pixel = 0
         self.crt_row = 0
-        self.crt = [
-            ["."] * 40,
-            ["."] * 40,
-            ["."] * 40,
-            ["."] * 40,
-            ["."] * 40,
-            ["."] * 40,
-        ]
+        self.crt = [[" "] * CPU.CRT_WIDTH for _ in range(CPU.CRT_ROWS)]
 
-    def get_next_cycle(self) -> None:
-        self.pixel = next(self.cycles)
+    def cycle(self) -> None:
+        self.clock += 1
+        self.pixel = self.clock
 
         # For part01
-        if self.pixel in (20, 60, 100, 140, 180, 220):
-            self.sum.append(self.x * self.pixel)
+        if (self.pixel - 20) % CPU.CRT_WIDTH == 0:  # 20, 60, 100, 140, 180, 220, ...
+            self.sum += self.r["x"] * self.pixel
 
         # for Part02
-        if self.pixel % 40 == 0:
-            self.crt_row = (self.crt_row + 1) % 6
+        if self.pixel % CPU.CRT_WIDTH == 0:
+            self.crt_row = (self.crt_row + 1) % CPU.CRT_ROWS
 
-        index = self.pixel % 40
-        self.crt[self.crt_row][index] = (
-            "#" if index in (self.x, self.x + 1, self.x + 2) else "."
+        crt_col = self.pixel % CPU.CRT_WIDTH
+        self.crt[self.crt_row][crt_col] = (
+            "#" if crt_col in (self.r["x"], self.r["x"] + 1, self.r["x"] + 2) else " "
         )
 
     def run_program(self) -> None:
-        for cmd in self.stack:
-            if cmd[0] == "addx":
-                """X register is increased by the arg1
-                Takes two cycles."""
-                for x in range(2):
-                    self.get_next_cycle()
-                self.x += int(cmd[1])
+        for cmds in self.stack:
+            cmd = cmds[0]
+            if cmd == "addx":
+                """Increase register 'x' by value passed in.  Takes two cycles."""
+                self.cycle()
+                self.cycle()
+                self.r["x"] += int(cmds[1])
 
-            elif cmd[0] == "noop":
-                """One cycle to complete."""
-                self.get_next_cycle()
+            elif cmd == "noop":
+                """Takes a single cycle to complete."""
+                self.cycle()
 
 
 def run() -> None:
     lines = helpers.lines(Path(__file__).parent / "data" / "day_10.txt")
+
     cpu = CPU()
-    for line in lines:
-        cpu.stack.append(line.split())
+    cpu.stack = [line.split() for line in lines]
     cpu.run_program()
-    assert sum(cpu.sum) == 14860
+
+    assert cpu.sum == 14860
     assert cpu.crt == [  # RGCEHURK
-        list(".###...##..####.####.#..#.#..#.###..#..#"),
-        list("##..#.#..#....#.#....#..#.#..#.#..#.#.#."),
-        list("##..#.#......#..###..####.#..#.#..#.##.."),
-        list(".###..#.##..#...#....#..#.#..#.###..#.#."),
-        list("##.#..#..#.#....#....#..#.#..#.#.#..#.#."),
-        list("##..#..###.####.####.#..#..##..#..#.#..#"),
+        list(" ###   ##  #### #### #  # #  # ###  #  #"),
+        list("##  # #  #    # #    #  # #  # #  # # # "),
+        list("##  # #      #  ###  #### #  # #  # ##  "),
+        list(" ###  # ##  #   #    #  # #  # ###  # # "),
+        list("## #  #  # #    #    #  # #  # # #  # # "),
+        list("##  #  ### #### #### #  #  ##  #  # #  #"),
     ]
 
 
