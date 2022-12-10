@@ -28,3 +28,6 @@ class Pos:
         y: int = self.row - other.row
         x: int = self.col - other.col
         return sqrt((y * y) + (x * x))
+
+    def __repr__(self):
+        return f"Pos({self.row}, {self.col})"
