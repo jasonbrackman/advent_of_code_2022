@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 from typing import List, Dict
 import helpers
@@ -53,6 +54,12 @@ class CPU:
             elif cmd == "noop":
                 """Takes a single cycle to complete."""
                 self.cycle()
+
+    def display(self):
+        print("\033c", end="")
+        for c in self.crt:
+            print("".join(c))
+        time.sleep(0.2)
 
 
 def run() -> None:

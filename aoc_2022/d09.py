@@ -1,6 +1,3 @@
-from copy import copy, deepcopy
-from dataclasses import dataclass, field
-
 from pathlib import Path
 from typing import List, Tuple, Set
 
@@ -22,7 +19,6 @@ class RopeBridge:
             self.tails.append(Pos(0, 0))
 
     def move_tail(self, direction: str) -> None:
-        new = []
         head = self.head
         for tail in self.tails:
             stretched = head.euclidean_distance(tail) >= 2
@@ -39,11 +35,9 @@ class RopeBridge:
                 if tail.col != head.col:
                     tail.col += 1 if head.col > tail.col else -1
 
-            new.append(tail)
             head = tail  # will exit with the last part of the tail
 
         self.visited.add((head.row, head.col))
-        self.tails = new
 
     def move(self, rule: Tuple[str, int]) -> None:
         direction, count = rule
@@ -65,7 +59,7 @@ class RopeBridge:
                 self.move_tail(direction)
 
 
-def work(rules, tail_length: int) -> int:
+def work(rules: List[Tuple[str, int]], tail_length: int) -> int:
     # Part1
     rb = RopeBridge()
     rb.set_tail_length(tail_length)
