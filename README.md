@@ -8,19 +8,23 @@ MacBook Pro
 
 
 [aoc_2022.d01.run]: 0.4 ms \
-[aoc_2022.d02.run]: 0.9 ms \
-[aoc_2022.d03.run]: 0.8 ms \
-[aoc_2022.d04.run]: 3.5 ms \
-[aoc_2022.d05.run]: 1.5 ms \
-[aoc_2022.d06.run]: 1.4 ms \
-[aoc_2022.d07.run]: 0.6 ms \
-[aoc_2022.d08.run]: 29.9 ms \
-[aoc_2022.d09.run]: 37.4 ms \
-[aoc_2022.d10.run]: 0.2 ms
+[aoc_2022.d02.run]: 0.7 ms \
+[aoc_2022.d03.run]: 0.9 ms \
+[aoc_2022.d04.run]: 3.6 ms \
+[aoc_2022.d05.run]: 1.4 ms \
+[aoc_2022.d06.run]: 1.2 ms \
+[aoc_2022.d07.run]: 0.5 ms \
+[aoc_2022.d08.run]: 29.7 ms \
+[aoc_2022.d09.run]: 34.1 ms \
+[aoc_2022.d10.run]: 0.2 ms \
+[aoc_2022.d11.run]: 228.7 ms
+
 
 
 ```             
+      --------Part 1--------   --------Part 2--------
 Day       Time   Rank  Score       Time   Rank  Score
+ 11   01:05:15   6311      0   03:21:50   8770      0
  10   00:28:34   6041      0   00:54:00   5677      0
   9   09:53:48  36480      0       >24h  45481      0
   8   00:22:12   3686      0   01:34:00   9945      0
