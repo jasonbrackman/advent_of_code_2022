@@ -12,12 +12,18 @@ class Node(Generic[T]):
     """
 
     def __init__(
-        self, state: T, parent: Optional[T], cost: float = 0.0, heuristic: float = 0.0
+        self,
+        state: T,
+        parent: Optional[Node[T]],
+        cost: float = 0.0,
+        heuristic: float = 0.0,
+        depth: int = 0,
     ):
         self.state = state
         self.parent = parent
         self.cost = cost
         self.heuristic = heuristic
+        self.depth = depth
 
     def __lt__(self, other: Node[T]) -> bool:
         """Used with a heap / priorityqueue"""

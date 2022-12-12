@@ -55,12 +55,6 @@ class CPU:
                 """Takes a single cycle to complete."""
                 self.cycle()
 
-    def display(self):
-        print("\033c", end="")
-        for c in self.crt:
-            print("".join(c))
-        time.sleep(0.2)
-
 
 def run() -> None:
     lines = helpers.lines(Path(__file__).parent / "data" / "day_10.txt")

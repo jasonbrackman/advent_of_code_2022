@@ -1,10 +1,10 @@
+import heapq
 import math
 import operator
 import re
 from collections import deque, defaultdict
 from pathlib import Path
 from typing import List, Dict, Deque
-import heapq
 
 PATTERN = re.compile(r"[0-9]+")
 

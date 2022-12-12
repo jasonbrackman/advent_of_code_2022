@@ -18,7 +18,7 @@ class RopeBridge:
         for _ in range(val):
             self.tails.append(Pos(0, 0))
 
-    def move_tail(self, direction: str) -> None:
+    def move_tail(self) -> None:
         head = self.head
         for tail in self.tails:
             stretched = head.euclidean_distance(tail) >= 2
@@ -44,19 +44,54 @@ class RopeBridge:
         if direction == "R":
             for index in range(count):
                 self.head.col += 1
-                self.move_tail(direction)
+                self.move_tail()
         elif direction == "L":
             for index in range(count):
                 self.head.col += -1
-                self.move_tail(direction)
+                self.move_tail()
         elif direction == "U":
             for index in range(count):
                 self.head.row += -1
-                self.move_tail(direction)
+                self.move_tail()
         elif direction == "D":
             for index in range(count):
                 self.head.row += 1
-                self.move_tail(direction)
+                self.move_tail()
+        # helpers.display_ascii(self.grid(), refresh_rate=0.1)
+
+    def grid(self) -> List[List[str]]:
+        reds = {
+            1: "\033[31;2m",
+            2: "\033[31;2m",
+            3: "\033[31;2m",
+            4: "\033[31;2m",
+            5: "\033[31;2m",
+            6: "\033[31;2m",
+            7: "\033[31;2m",
+            8: "\033[31;2m",
+            9: "\033[31;2m",
+        }
+        maxr = 20
+        maxc = 60
+        grid = []
+        for y in range(maxr):
+            row = []
+            for x in range(maxc):
+                stop = False
+                if self.head.row % maxr == y and self.head.col % maxc == x:
+                    row.append("\033[32mH\033[0m")
+                else:
+
+                    for idx, t in enumerate(self.tails, 1):
+                        if not stop:
+                            if (t.row % maxr) == y and t.col % maxc == x:
+                                row.append(f"{reds[idx]}{str(idx)}\033[0m")
+                                stop = True
+                    if not stop:
+                        row.append("\033[90m.\033[0m")
+                # row.append("  ")
+            grid.append(row)
+        return grid
 
 
 def work(rules: List[Tuple[str, int]], tail_length: int) -> int:
