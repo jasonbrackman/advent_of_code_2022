@@ -1,5 +1,5 @@
 import helpers
-from aoc_2022 import d01, d02, d03, d04, d05, d06, d07, d08, d09, d10, d11, d12
+from aoc_2022 import d01, d02, d03, d04, d05, d06, d07, d08, d09, d10, d11, d12, d13
 
 
 if __name__ == "__main__":
@@ -17,5 +17,6 @@ if __name__ == "__main__":
             d10.run,
             d11.run,
             d12.run,
+            d13.run,
         ]
     )
