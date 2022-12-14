@@ -1,5 +1,6 @@
 import heapq
 import re
+from ast import literal_eval
 from itertools import zip_longest
 from pathlib import Path
 from typing import List, Optional
@@ -65,7 +66,7 @@ def run() -> None:
 
     part01 = 0
     for index, (left, right) in enumerate(groups):
-        if process_group(eval(left), eval(right)):
+        if process_group(literal_eval(left), literal_eval(right)):
             part01 += index + 1
     assert part01 == 5675
 
