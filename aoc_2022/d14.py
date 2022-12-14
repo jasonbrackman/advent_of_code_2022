@@ -9,6 +9,10 @@ PATTERN = re.compile(r"[0-9]+")
 
 
 class Waterfall:
+    """
+    A class representing a waterfall simulation, with rocks, sand, and a floor.
+    """
+
     def __init__(self) -> None:
         self.rocks: Set[Tuple[int, int]] = set()
         self.sand: Set[Tuple[int, int]] = set()
@@ -18,10 +22,12 @@ class Waterfall:
         self.floor = -2
 
     def break_rocks(self, rocks: List[List[List[int]]]) -> None:
-        for (r1, r2) in rocks:
-            p1x, p1y = r1
-            p2x, p2y = r2
+        """
+        Add rocks to the simulation.
 
+        :param rocks: A list of rocks to add to the simulation.
+        """
+        for (p1x, p1y), (p2x, p2y) in rocks:
             for x in range(min(p1x, p2x), max(p1x, p2x) + 1):
                 for y in range(min(p1y, p2y), max(p1y, p2y) + 1):
                     self.rocks.add((x, y))
@@ -30,18 +36,22 @@ class Waterfall:
         self.floor = self.lowest + 2
 
     def lowest_rock(self) -> None:
+        """Update the `lowest` attribute with the lowest y-coordinate of all rocks in the simulation."""
         self.lowest = max(j for (i, j) in self.rocks)
 
     def blocked(self, pos: Tuple[int, int]) -> bool:
+        """Returns True if the given position is blocked by a rock or sand, or is at the floor of the simulation."""
+
         if pos in self.rocks:
             return True
+
         if pos in self.sand:
             return True
-        if pos[1] == self.floor:
-            return True
-        return False
+
+        return pos[1] == self.floor
 
     def drop(self, test_lowest=False) -> int:
+        """Simulates the flow of sand from the starting position, moving left, right, or down."""
         pos = self.start
 
         while True:
@@ -75,19 +85,20 @@ class Waterfall:
 
     def pprint(self) -> None:
         for x in range(0, self.floor + 1):
+            line = ""
             for y in range(450, 550):
                 pos = (y, x)
                 if pos == (0, 500):
-                    print("+", end="")
+                    line += "+"
                 elif pos in self.sand:
-                    print("o", end="")
+                    line += "o"
                 elif pos in self.rocks:
-                    print("#", end="")
+                    line += "#"
                 elif pos[1] == self.floor:
-                    print("F", end="")
+                    line += "F"
                 else:
-                    print(".", end="")
-            print()
+                    line += "."
+            print(line)
 
 
 def get_rock_rules() -> List[List[List[int]]]:
@@ -109,10 +120,10 @@ def get_rock_rules() -> List[List[List[int]]]:
 
 def run() -> None:
     rocks = get_rock_rules()
-    wf = Waterfall()
-    wf.break_rocks(rocks)
-    assert wf.drop(test_lowest=True) == 745
-    assert wf.drop() == 27551
+    waterfall = Waterfall()
+    waterfall.break_rocks(rocks)
+    assert waterfall.drop(test_lowest=True) == 745
+    assert waterfall.drop() == 27551
 
 
 if __name__ == "__main__":
