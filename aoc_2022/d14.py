@@ -50,7 +50,7 @@ class Waterfall:
 
         return pos[1] == self.floor
 
-    def drop(self, test_lowest=False) -> int:
+    def drop(self, test_lowest: bool = False) -> int:
         """Simulates the flow of sand from the starting position, moving left, right, or down."""
         pos = self.start
 
