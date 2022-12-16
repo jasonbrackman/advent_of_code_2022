@@ -19,7 +19,7 @@ class Pos:
     def __eq__(self, other):
         return self.col == other.col and self.row == other.row
 
-    def manhattan_distance(self, other: Pos) -> float:
+    def manhattan_distance(self, other: Pos) -> int:
         y: int = abs(self.row - other.row)
         x: int = abs(self.col - other.col)
         return y + x

@@ -25,10 +25,10 @@ def parse_data(lines: List[str]) -> Tuple[List[Pos], Dict[Tuple[int, int], int]]
 def run() -> None:
     path = Path(__file__).parent / "data" / "day_15.txt"
     lines = helpers.lines(path)
-    beacons, cheapo = parse_data(lines)
-    assert part01(beacons, cheapo, 2_000_000) == 4883971
+    beacons, sensors = parse_data(lines)
+    assert part01(beacons, sensors, 2_000_000) == 4883971
 
-    p2 = part02(cheapo)
+    p2 = part02(sensors)
     assert p2 == 12691026767556, "Expected 12691026767556, but received" + str(p2)
 
 
@@ -43,7 +43,8 @@ def part01(beacons, cheapo, row_search: int) -> int:
     bad_items = {b.col for b in beacons if b.row == row_search}
     return len(items - bad_items)
 
-def _merge_ranges(ranges):
+
+def _merge_ranges(ranges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
 
     ranges.sort(key=lambda x: x[0])
     merged = []
@@ -71,18 +72,20 @@ def _merge_ranges(ranges):
     # Return the list of merged ranges
     return merged
 
-def _get_ranges(cheapo: Dict[Tuple[int, int], int], row_search: int) -> List[Tuple[int, int]]:
+
+def _get_ranges(sensors: Dict[Tuple[int, int], int], row_search: int) -> List[Tuple[int, int]]:
     ranges = []
-    for (row, col), distance in cheapo.items():
+    for (row, col), distance in sensors.items():
         if row - distance <= row_search <= row + distance:
             spread = abs(row - row_search) - distance
             ranges.append((col + -abs(spread), col + abs(spread)))
     return ranges
 
-def part02(cheapo) -> int:
+
+def part02(sensors) -> int:
     max_value = 4_000_000
     for y_val in range(max_value):
-        result = _get_ranges(cheapo, y_val)
+        result = _get_ranges(sensors, y_val)
         merged = _merge_ranges(result)
         if len(merged) == 2:
             for x_val in range(merged[0][1] + 1, merged[1][0]):
