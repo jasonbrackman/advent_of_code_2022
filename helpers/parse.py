@@ -1,5 +1,8 @@
+import re
 from pathlib import Path
 from typing import List
+
+INT_PATTERN = re.compile(r"[-\d]+")
 
 
 def lines(path: Path) -> List[str]:
