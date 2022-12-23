@@ -62,7 +62,7 @@ class Board:
 
 
 def parse() -> Tuple[List[List[str]], List[Tuple[str, int]]]:
-    path = Path(__file__).parent / "data" / "day_21.txt"
+    path = Path(__file__).parent / "data" / "day_22.txt"
     lines = []
     instructions = []
 
