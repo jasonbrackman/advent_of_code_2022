@@ -16,6 +16,7 @@ from aoc_2022 import (
     d14,
     d15,
     d18,
+    d24,
 )
 
 
@@ -38,5 +39,6 @@ if __name__ == "__main__":
             d14.run,
             d15.run,
             d18.run,
+            d24.run,
         ]
     )
