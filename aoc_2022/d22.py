@@ -54,6 +54,36 @@ class Board:
         self.current = (row, col)
         return 1000 * (row + 1) + 4 * (col + 1) + (self._arrow % 4)
 
+    def spin_cube(self, instructions: List[Tuple[str, int]]) -> int:
+        result = -1
+        for (i, steps) in instructions:
+            self._arrow += -1 if i == "L" else 1
+            result = self._move(steps)
+
+        return result
+
+    def _move_cube(self, steps: int) -> int:
+        move = Board.FACING[self._arrow % 4]
+        row, col = self.current
+
+        for _ in range(steps):
+            counter = 1
+            row = (row + move[0]) % self.height
+            col = (col + move[1]) % self.width
+            while self.rows[row][col] not in ".#":
+                # Need to jump and swizzle
+                # if DOWN -> swap new_row = col, new_col = 0 if row = 49, else 49
+                counter += 1
+                row = (row + move[0]) % self.height
+                col = (col + move[1]) % self.width
+
+            if self.rows[row][col] == "#":
+                row = (row - (move[0] * counter)) % self.height
+                col = (col - (move[1] * counter)) % self.width
+
+        self.current = (row, col)
+        return 1000 * (row + 1) + 4 * (col + 1) + (self._arrow % 4)
+
     def _starting_pos(self) -> Tuple[int, int]:
         for row in range(len(self.rows)):
             for col in range(len(self.rows[row])):
