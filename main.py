@@ -16,6 +16,7 @@ from aoc_2022 import (
     d14,
     d15,
     d18,
+    d20,
     d21,
     d22,
     d23,
@@ -43,6 +44,7 @@ if __name__ == "__main__":
             d14.run,
             d15.run,
             d18.run,
+            d20.run,
             d21.run,
             d22.run, # only part1 complete
             d23.run,
