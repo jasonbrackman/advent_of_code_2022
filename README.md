@@ -23,6 +23,7 @@ MacBook Pro
 [aoc_2022.d14.run]: 720.0 ms \
 [aoc_2022.d15.run]: 11109.5 ms \
 [aoc_2022.d16.run]: 705289.5 ms \
+[aoc_2022.d17.run]: 99428.3 ms \
 [aoc_2022.d18.run]: 3309.6 ms \
 [aoc_2022.d19.run]: 701255.9 ms \
 [aoc_2022.d20.run]: 5034.6 ms \
