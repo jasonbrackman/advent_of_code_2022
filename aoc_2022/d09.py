@@ -81,7 +81,6 @@ class RopeBridge:
                 if self.head.row % maxr == y and self.head.col % maxc == x:
                     row.append("\033[32mH\033[0m")
                 else:
-
                     for idx, t in enumerate(self.tails, 1):
                         if not stop:
                             if (t.row % maxr) == y and t.col % maxc == x:

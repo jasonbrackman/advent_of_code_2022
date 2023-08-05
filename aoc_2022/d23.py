@@ -6,24 +6,24 @@ from typing import List, Dict, Tuple
 import helpers
 
 Point = Tuple[int, int]
-dial = ['N', 'S', 'W', 'E']
+dial = ["N", "S", "W", "E"]
 dial_rules: Dict[str, Tuple[str, str, str]] = {
-    'N': ('N', 'NE', 'NW'),
-    'S': ('S', 'SE', 'SW'),
-    'W': ('W', 'NW', 'SW'),
-    'E': ('E', 'NE', 'SE'),
+    "N": ("N", "NE", "NW"),
+    "S": ("S", "SE", "SW"),
+    "W": ("W", "NW", "SW"),
+    "E": ("E", "NE", "SE"),
 }
 
 compass: Dict[str, Point] = {
-        'N': (-1, 0),
-        'NE': (-1, 1),
-        'E': (0, 1),
-        'SE': (1, 1),
-        'S': (1, 0),
-        'SW': (1, -1),
-        'W': (0, -1),
-        'NW': (-1, -1),
-    }
+    "N": (-1, 0),
+    "NE": (-1, 1),
+    "E": (0, 1),
+    "SE": (1, 1),
+    "S": (1, 0),
+    "SW": (1, -1),
+    "W": (0, -1),
+    "NW": (-1, -1),
+}
 
 
 def round(elves: List[Point], turn) -> Tuple[List[Point], int]:
@@ -89,12 +89,12 @@ def pprint(elves: List[Point], round: int, score: int) -> None:
     col_min = min(e[1] for e in elves)
     col_max = max(e[1] for e in elves)
     for row in range(row_min, row_max + 1):
-        line = ''
+        line = ""
         for col in range(col_min, col_max + 1):
             if (row, col) in elves:
-                line += '#'
+                line += "#"
             else:
-                line += '.'
+                line += "."
         print(line)
 
 
@@ -110,13 +110,13 @@ def part01(elves: List[Point]) -> int:
 
 
 def run() -> None:
-    path = Path(__file__).parent / 'data' / 'day_23.txt'
+    path = Path(__file__).parent / "data" / "day_23.txt"
     lines = helpers.lines(path)
     elves = []
     rows = [list(line) for line in lines]
     for row in range(len(rows)):
         for col in range(len(rows[0])):
-            if rows[row][col] == '#':
+            if rows[row][col] == "#":
                 elves.append((row, col))
 
     assert part01(elves[::]) == 3871

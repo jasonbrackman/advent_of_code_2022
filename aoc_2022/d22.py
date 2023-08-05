@@ -28,7 +28,7 @@ class Board:
 
     def spin(self, instructions: List[Tuple[str, int]]) -> int:
         result = -1
-        for (i, steps) in instructions:
+        for i, steps in instructions:
             self._arrow += -1 if i == "L" else 1
             result = self._move(steps)
 
@@ -56,7 +56,7 @@ class Board:
 
     def spin_cube(self, instructions: List[Tuple[str, int]]) -> int:
         result = -1
-        for (i, steps) in instructions:
+        for i, steps in instructions:
             self._arrow += -1 if i == "L" else 1
             result = self._move(steps)
 

@@ -8,19 +8,20 @@ import helpers
 
 
 ops = {
-    '+': operator.add,
-    '-': operator.sub,
-    '/': operator.floordiv,
-    '*': operator.mul,
-    '=': operator.eq,
+    "+": operator.add,
+    "-": operator.sub,
+    "/": operator.floordiv,
+    "*": operator.mul,
+    "=": operator.eq,
 }
 
+
 def parse() -> Dict[str, List[str]]:
-    path = Path(__file__).parent / 'data' / 'day_21.txt'
+    path = Path(__file__).parent / "data" / "day_21.txt"
     lut: Dict[str, List[str]] = {}
     for line in helpers.lines(path):
         lhs, *rhs = line.split()
-        lhs = lhs.strip(':')
+        lhs = lhs.strip(":")
         if len(rhs) == 1:
             rhs = [int(r) for r in rhs]
         lut[lhs] = rhs
@@ -59,8 +60,8 @@ def spin2(goal, lut: Dict[str, List[str]]) -> Tuple[str, int]:
         if len(lut[goal]) == 1 and isinstance(lut[goal][0], bool):
             # print statements reveal that rhs is always the same
             # lhs changes based on input -- so lets just see if its too low, too high, or juuuust right.
-            lut_lhs = lut['zhms'][0]
-            lut_rhs = lut['qqqz'][0]
+            lut_lhs = lut["zhms"][0]
+            lut_rhs = lut["qqqz"][0]
             lut_result = 0
 
             # is it lt, eq, gt
@@ -87,16 +88,16 @@ def spin2(goal, lut: Dict[str, List[str]]) -> Tuple[str, int]:
 
 def part01() -> int:
     lut = parse()
-    return spin('root', lut)
+    return spin("root", lut)
 
 
 def part02() -> int:
     lut = parse()
 
     # patch the 'root'
-    goal = 'root'
+    goal = "root"
     l, m, r = lut[goal]
-    m = '='
+    m = "="
     lut[goal] = [l, m, r]
 
     min_ = 0
@@ -105,7 +106,7 @@ def part02() -> int:
         x = (max_ - min_) // 2 + min_
         # need a copy of this lut each time
         temp_lut = copy.deepcopy(lut)
-        temp_lut['humn'] = [x]
+        temp_lut["humn"] = [x]
         result, equality = spin2(goal, temp_lut)
 
         if equality == 1:
@@ -113,9 +114,9 @@ def part02() -> int:
         elif equality == -1:
             max_ = x
         else:
-            for index in range(x -10, x+10):
+            for index in range(x - 10, x + 10):
                 temp_lut = copy.deepcopy(lut)
-                temp_lut['humn'] = [index]
+                temp_lut["humn"] = [index]
                 result, equality = spin2(goal, temp_lut)
                 if equality == 0:
                     return index

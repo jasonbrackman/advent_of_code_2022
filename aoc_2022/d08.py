@@ -14,7 +14,6 @@ def is_visible(row: int, col: int, height: int, grid: List[List[int]]) -> bool:
 
 
 def is_visible_count(row: int, col: int, height: int, grid: List[List[int]]) -> int:
-
     up = 0
     for r in range(row - 1, -1, -1):
         up += 1

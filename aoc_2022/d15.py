@@ -22,6 +22,7 @@ def parse_data(lines: List[str]) -> Tuple[List[Pos], Dict[Tuple[int, int], int]]
         beacons.append(beacon)
     return beacons, sensors
 
+
 def run() -> None:
     path = Path(__file__).parent / "data" / "day_15.txt"
     lines = helpers.lines(path)
@@ -45,7 +46,6 @@ def part01(beacons, cheapo, row_search: int) -> int:
 
 
 def _merge_ranges(ranges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
-
     ranges.sort(key=lambda x: x[0])
     merged = []
 
@@ -73,7 +73,9 @@ def _merge_ranges(ranges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
     return merged
 
 
-def _get_ranges(sensors: Dict[Tuple[int, int], int], row_search: int) -> List[Tuple[int, int]]:
+def _get_ranges(
+    sensors: Dict[Tuple[int, int], int], row_search: int
+) -> List[Tuple[int, int]]:
     ranges = []
     for (row, col), distance in sensors.items():
         if row - distance <= row_search <= row + distance:

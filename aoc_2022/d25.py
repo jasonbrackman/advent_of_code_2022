@@ -41,13 +41,13 @@ def decimal_to_snafu(val: int) -> str:
             if val <= (max_val + max_val):
                 if val <= (mv + mv_minus):
                     if chain is not None and abs(i - chain) > 1:
-                        result += '0' * (abs(i-chain) - 1)
+                        result += "0" * (abs(i - chain) - 1)
                     result += "1"
                     val -= cache[i]
 
                 else:
                     if chain is not None and abs(i - chain) > 1:
-                        result += '0' * (abs(i-chain) - 1)
+                        result += "0" * (abs(i - chain) - 1)
                     result += "2"
                     val -= cache[i] + cache[i]
 
@@ -64,12 +64,12 @@ def decimal_to_snafu(val: int) -> str:
             if val >= (max_val + max_val) * -1:
                 if val >= (mv + mv_minus) * -1:
                     if chain is not None and abs(i - chain) > 1:
-                        result += '0' * (abs(i-chain) - 1)
+                        result += "0" * (abs(i - chain) - 1)
                     result += "-"
                     val += cache[i]
                 else:
                     if chain is not None and abs(i - chain) > 1:
-                        result += '0' * (abs(i-chain) - 1)
+                        result += "0" * (abs(i - chain) - 1)
                     result += "="
                     val += cache[i] + cache[i]
 
@@ -89,24 +89,24 @@ def run() -> None:
     lines = helpers.lines(path)
     collections = [snafu_to_decimal(line) for line in lines]
     new_val = sum(collections)
-    assert decimal_to_snafu(new_val) == '122-12==0-01=00-0=02'
+    assert decimal_to_snafu(new_val) == "122-12==0-01=00-0=02"
 
 
 def run_tests() -> None:
     x = (
-        ('1=-0-2', 1747),
-        ('12111', 906),
-        ('2=0=',  198),
-        ('21', 11),
-        ('2=01', 201),
-        ('111', 31),
-        ('20012', 1257),
-        ('112', 32),
-        ('1=-1=', 353),
-        ('1-12', 107),
-        ('12', 7),
-        ('1=', 3),
-        ('122', 37),
+        ("1=-0-2", 1747),
+        ("12111", 906),
+        ("2=0=", 198),
+        ("21", 11),
+        ("2=01", 201),
+        ("111", 31),
+        ("20012", 1257),
+        ("112", 32),
+        ("1=-1=", 353),
+        ("1-12", 107),
+        ("12", 7),
+        ("1=", 3),
+        ("122", 37),
     )
     for i, j in x:
         assert snafu_to_decimal(i) == j

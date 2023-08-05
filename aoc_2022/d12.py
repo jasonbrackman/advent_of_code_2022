@@ -49,7 +49,7 @@ def bfs(row: int, col: int, grid: List[List[str]]) -> Optional[Node[Tuple[int, i
         if grid[row][col] == "E":
             return node
 
-        for (row, col) in neighbours(row, col, grid):
+        for row, col in neighbours(row, col, grid):
             if (row, col) not in visited:
                 visited.add((row, col))
                 q.append(Node((row, col), node, depth=node.depth + 1))
@@ -58,7 +58,6 @@ def bfs(row: int, col: int, grid: List[List[str]]) -> Optional[Node[Tuple[int, i
 
 
 def part01(grid: List[List[str]]) -> Optional[int]:
-
     row_, col_ = -1, -1
     for row in range(len(grid)):
         for col in range(len(grid[0])):
@@ -80,7 +79,7 @@ def part02(grid: List[List[str]]) -> Optional[int]:
                 starts.append((row, col))
 
     counts = []
-    for (r, c) in starts:
+    for r, c in starts:
         node = bfs(r, c, grid)
         if node:
             counts.append(node.depth)

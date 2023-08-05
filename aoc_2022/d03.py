@@ -27,7 +27,7 @@ def part02(lines: List[str]) -> int:
 
 def run() -> None:
     """Run all the parts for timing purposes."""
-    lines = helpers.lines(Path(__file__).parent / 'data' / 'day_03.txt')
+    lines = helpers.lines(Path(__file__).parent / "data" / "day_03.txt")
     assert part01(lines) == 7872
     assert part02(lines) == 2497
 

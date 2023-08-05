@@ -39,7 +39,9 @@ def search(costs: Costs, bank: Bank, bots: Bots, minutes: int) -> int:
     max_costs = cost_maximums(costs)
     start = RNode(bank, bots, 0)
     q = deque([start])
-    v = {start.hash(), }
+    v = {
+        start.hash(),
+    }
 
     current_time = 0
 
@@ -58,7 +60,7 @@ def search(costs: Costs, bank: Bank, bots: Bots, minutes: int) -> int:
         # _choices to purchase
         # -- in an effort to recude amount of state; throw away state that is impossible to use.  For
         #    example, the bank can fill up to a point it can never be spent in time left.
-        minutes_left = minutes-node.time
+        minutes_left = minutes - node.time
         for ii in range(1, 4):
             if node.bank[ii] > max_costs[ii] * minutes_left:
                 node.bank[ii] = max_costs[ii] * minutes_left
@@ -102,22 +104,17 @@ def cost_maximums(costs: Costs) -> List[int]:
 
 
 def parse_blueprints() -> Blueprints:
-    lut: Dict[str, int] = {
-        'geode': 0,
-        'obsidian': 1,
-        'clay': 2,
-        'ore': 3
-    }
+    lut: Dict[str, int] = {"geode": 0, "obsidian": 1, "clay": 2, "ore": 3}
     blueprints: Blueprints = {}
-    path = Path(__file__).parent / 'data' / 'day_19.txt'
+    path = Path(__file__).parent / "data" / "day_19.txt"
     for i, line in enumerate(helpers.lines(path), start=1):
         blueprints[i] = {}
         _, data = line.split(":")
-        for d in data.split('. '):
-            robot_type, items = d.strip().split('costs')
+        for d in data.split(". "):
+            robot_type, items = d.strip().split("costs")
             robot_type = robot_type.split()[1].strip()
             parts_ = [part.split() for part in items.split("and")]
-            parts = {(lut[p.strip('.')], int(v)) for (v, p) in parts_}
+            parts = {(lut[p.strip(".")], int(v)) for (v, p) in parts_}
             blueprints[i][lut[robot_type]] = parts
     return blueprints
 
@@ -129,7 +126,7 @@ def part01() -> int:
     bots = [0, 0, 0, 1]
     for bp in blueprints:
         r = search(blueprints[bp], bank, bots, 24)
-        total += (r * bp)
+        total += r * bp
     return total
 
 
@@ -160,4 +157,3 @@ def run() -> None:
 
 if __name__ == "__main__":
     part01()
-

@@ -16,7 +16,7 @@ def process_group(left: int | List[int], right: int | List[int]) -> Optional[boo
         return True
 
     if all(isinstance(i, int) for i in left) and all(isinstance(i, int) for i in right):
-        for (a, b) in zip(left, right):
+        for a, b in zip(left, right):
             if a != b:
                 return a < b
 

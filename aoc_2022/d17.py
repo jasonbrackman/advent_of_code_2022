@@ -16,7 +16,6 @@ ROCKS = [
 
 
 class Chamber:
-
     width = 7
     height = 4
 
@@ -49,7 +48,7 @@ class Chamber:
 
     def clean(self) -> None:
         waterline: Dict[int, int] = defaultdict(int)
-        for (row, col) in self.stack:
+        for row, col in self.stack:
             waterline[col] = min(waterline[col], row)
         remove_greater = max(waterline.values()) + 3
         Chamber.height = min(waterline.values()) - 4
@@ -114,7 +113,7 @@ def run() -> None:
     assert p1 in (3068, 3141)
 
     p2 = part02(rules)
-    assert p2 == 1561739130391, f'Received [{p2}]'
+    assert p2 == 1561739130391, f"Received [{p2}]"
 
 
 def part02(rules: Rules) -> int:
@@ -130,7 +129,7 @@ def part02(rules: Rules) -> int:
         last = 0
         last_value = 0
         chamber = Chamber(rules)
-        for index in range(50_000): # range must be big enough to see repeats...
+        for index in range(50_000):  # range must be big enough to see repeats...
             if bad > 3:
                 continue
             if good > 10:

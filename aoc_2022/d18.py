@@ -97,7 +97,7 @@ class Cube:
         # x
         for index in range(self.max_x):
             tests = [(self.x - index, self.y, self.z), (self.x + index, self.y, self.z)]
-            for (x, y, z) in tests:
+            for x, y, z in tests:
                 if self.min_x <= x <= self.max_x:
                     if (x, y, z) not in self.c:
                         self.i.add((x, y, z))
@@ -105,7 +105,7 @@ class Cube:
         # y
         for index in range(self.max_y):
             tests = [(self.x, self.y - index, self.z), (self.x, self.y + index, self.z)]
-            for (x, y, z) in tests:
+            for x, y, z in tests:
                 if self.min_y <= y <= self.max_y:
                     if (x, y, z) not in self.c:
                         self.i.add((x, y, z))
@@ -113,7 +113,7 @@ class Cube:
         # z
         for index in range(self.max_z):
             tests = [(self.x, self.y, self.z - index), (self.x, self.y, self.z + index)]
-            for (x, y, z) in tests:
+            for x, y, z in tests:
                 if self.min_z <= z <= self.max_z:
                     if (x, y, z) not in self.c:
                         self.i.add((x, y, z))
@@ -150,7 +150,6 @@ class Cube:
 
 
 def run() -> None:
-
     path = Path(__file__).parent / "data" / "day_18.txt"
     cubes = []
 

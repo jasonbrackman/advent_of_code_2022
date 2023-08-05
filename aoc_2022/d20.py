@@ -63,8 +63,7 @@ class Node:
 
 
 def parts(decryption_key: int, times_to_spin: int) -> int:
-
-    path = Path(__file__).parent / 'data' / 'day_20.txt'
+    path = Path(__file__).parent / "data" / "day_20.txt"
     nums = helpers.ints(path)
 
     lut = {i: n * decryption_key for i, n in enumerate(nums)}
@@ -95,6 +94,7 @@ def run() -> None:
     times_to_spin = 10
     p2 = parts(decryption_key, times_to_spin)
     assert p2 == 4526232706281
+
 
 if __name__ == "__main__":
     run()
