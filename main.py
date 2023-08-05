@@ -23,7 +23,8 @@ from aoc_2022 import (
     d22,
     d23,
     d24,
-    d25, d17,
+    d25,
+    d17,
 )
 
 
